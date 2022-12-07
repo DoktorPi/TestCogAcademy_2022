@@ -1,0 +1,162 @@
+---
+title: "TemperaturShift"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+data.frame(temp = seq(-15,45,0.1)) %>%
+  mutate(old = 100*dnorm(temp, mean = 15, sd = 9),
+         new = 100*dnorm(temp, mean = 17, sd = 9)
+         ) %>%
+  gather(key = "scenario",
+         value = density,
+         old,
+         new,
+         factor_key = TRUE
+         ) ->
+  df_plot
+```
+
+
+
+```{r}
+ggplot(df_plot,
+       mapping = aes(x = temp,
+                     y = density,
+                     color = scenario
+                     )
+       )+
+  geom_line(size = 1.5)+
+  ylim(c(0,6))+
+  geom_segment(x = 0,
+               y = -1,
+               xend = 0,
+               yend = 3.2,
+               color = "black",
+               linetype = "dashed"
+               )+
+  geom_segment(x = 10,
+               y = -1,
+               xend = 10,
+               yend = 5.2,
+               color = "black",
+               linetype = "dashed"
+               )+
+  geom_segment(x = 25,
+               y = -1,
+               xend = 25,
+               yend = 5.2,
+               color = "black",
+               linetype = "dashed"
+               )+
+  geom_segment(x = 30,
+               y = -1,
+               xend = 30,
+               yend = 3.2,
+               color = "black",
+               linetype = "dashed"
+               )+
+  geom_segment(x = 10,
+               y = 5,
+               xend = 25,
+               yend = 5,
+               color = "black",
+               size = 0.5,
+               arrow = arrow(ends = "both",
+                             type = "closed",
+                             length = unit(0.1,"inches")
+                             )
+                 )+
+geom_segment(x = 25,
+             y = 4,
+             xend = 45,
+             yend = 4,
+             color = "black",
+             size = 0.5,
+             arrow = arrow(ends = "last",
+                           type = "closed",
+                           length = unit(0.1,"inches")
+                           )
+             )+
+geom_segment(x = 30,
+             y = 3,
+             xend = 45,
+             yend = 3,
+             color = "black",
+             size = 0.5,
+             arrow = arrow(ends = "last",
+                           type = "closed",
+                           length = unit(0.1,"inches")
+                           )
+             )+
+geom_segment(x = 10,
+             y = 4,
+             xend = -15,
+             yend = 4,
+             color = "black",
+             size = 0.5,
+             arrow = arrow(ends = "last",
+                           type = "closed",
+                           length = unit(0.1,"inches")
+                           )
+             )+
+geom_segment(x = 0,
+             y = 3,
+             xend = -15,
+             yend = 3,
+             color = "black",
+             size = 0.5,
+             arrow = arrow(ends = "last",
+                           type = "closed",
+                           length = unit(0.1,"inches")
+                           )
+             )+
+  theme_minimal()+
+  labs(x = "Tageshöchsttemperatur (in Grad)",
+       y = "Verteilungsdichte (in Prozent pro Grad)",
+       color = "Szenario",
+       title = "Shift der jährlichen Temperaturverteilung um 2 Grad"
+       )+
+  scale_x_continuous(breaks = seq(-15,45,5))+
+  annotate("text",
+           x = 17.5,
+           y = 5.5,
+           label = "Moderate Tage \n 211 -> 217")+
+  annotate("text",
+           x = -2.5,
+           y = 4.5,
+           label = "Kalte Tage \n 105 -> 80")+
+  annotate("text",
+           x = -7.5,
+           y = 2.5,
+           label = "Eisige Tage \n 17 -> 11")+
+    annotate("text",
+           x = 37.5,
+           y = 2.5,
+           label = "Heiße Tage \n 17 -> 27")+
+    annotate("text",
+           x = 35,
+           y = 4.5,
+           label = "Warme Tage \n 49 -> 68")+
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        plot.title = element_text(hjust = 0.5)
+        )+
+  scale_color_manual(values = c("blue","red"),
+                     labels = c("Normal","+2 Grad") 
+                     )->
+  plot_temp
+
+plot_temp
+```
+
