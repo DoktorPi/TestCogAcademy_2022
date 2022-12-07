@@ -1,5 +1,5 @@
 ---
-title: "TemperaturShift"
+title: "what if the temperatures increase by two degrees?"
 output: html_document
 ---
 
@@ -122,32 +122,32 @@ geom_segment(x = 0,
                            )
              )+
   theme_minimal()+
-  labs(x = "Tageshöchsttemperatur (in Grad)",
-       y = "Verteilungsdichte (in Prozent pro Grad)",
-       color = "Szenario",
-       title = "Shift der jährlichen Temperaturverteilung um 2 Grad"
+  labs(x = "Maximal Daily Tempature (in Celsius)",
+       y = "Density (percentage per Celsius)",
+       color = "Scenario",
+       title = "What if the temperatures increase by two degrees??"
        )+
   scale_x_continuous(breaks = seq(-15,45,5))+
   annotate("text",
            x = 17.5,
            y = 5.5,
-           label = "Moderate Tage \n 211 -> 217")+
+           label = "Moderate Days \n 211 -> 217")+
   annotate("text",
            x = -2.5,
            y = 4.5,
-           label = "Kalte Tage \n 105 -> 80")+
+           label = "Cold Days \n 105 -> 80")+
   annotate("text",
            x = -7.5,
            y = 2.5,
-           label = "Eisige Tage \n 17 -> 11")+
+           label = "Frosty Days \n 17 -> 11")+
     annotate("text",
            x = 37.5,
            y = 2.5,
-           label = "Heiße Tage \n 17 -> 27")+
+           label = "Hot Days \n 17 -> 27")+
     annotate("text",
            x = 35,
            y = 4.5,
-           label = "Warme Tage \n 49 -> 68")+
+           label = "Warm Days \n 49 -> 68")+
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         plot.title = element_text(hjust = 0.5)
