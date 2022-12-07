@@ -1,5 +1,5 @@
 ---
-title: "what if the temperatures increase by two degrees?"
+title: "what if the temperatures increase by 2 degrees?"
 output: html_document
 ---
 

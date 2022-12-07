@@ -1,1 +1,1 @@
-This is just some repository to try out some things.
+Just some repository to try out some things.
