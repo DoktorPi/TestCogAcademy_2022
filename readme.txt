@@ -1,4 +1,4 @@
-Hello everyone, 
+Hello everyone in the cohort, 
 
 let's do some new project.
 
