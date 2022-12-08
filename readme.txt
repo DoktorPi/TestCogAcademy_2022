@@ -1,6 +1,5 @@
-<<<<<<< HEAD
-This some repository to try out some things for a change. 
+Hello everyone, 
 
-=======
-Just some repository to try out some things.
->>>>>>> parent of 5d6f023 (Update readme.txt)
+let's do some new project.
+
+Any ideas?
